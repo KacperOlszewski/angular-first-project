@@ -1,0 +1,11 @@
+<div class="img">
+	<img class="icon" ng-src="{{ info.icon }}"> 
+</div>
+<div class="fillin">
+	<h4>{{info.this_example}}</h4>
+	<label for="item">{{ info.nr }}</label>
+	<input type="text" ng-model="info.answer" placeholder="{{ info.example }}">
+	<div ng-class="info.good" class="good"></div>
+	<div ng-class="info.wrong" class="bad"></div>
+</div>
+

@@ -1,0 +1,24 @@
+  <div class="task">
+    <div class="contains">
+      <h1>{{exercise}}</h1>
+      <h2>{{instruction}}</h2>
+
+
+      <div class="task1">
+        <div class="item" ng-repeat="item in task1" ng-class="{'example': $first}">
+          <first-task info="item"></first-task>  
+        </div>
+      </div>
+
+      <div class="hints">
+        <ul>
+          <li ng-repeat="hints in task1 | orderBy:'order'">{{hints.right_answer}}</li>
+        </ul>
+      </div>
+
+      <button ng-class="check" ng-click="validate()"></button>
+    </div>
+  </div>
+
+
+  <pass-object obj="obj"></pass-object>
