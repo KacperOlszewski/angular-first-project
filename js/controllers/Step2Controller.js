@@ -1,12 +1,17 @@
-app.controller('Step2Controller', ['$scope', function($scope) {
+app.controller('Step2Controller', ['$scope', 'validates', function($scope, validates) {
+  
   $scope.check = "check";
+  $scope.validation_trigger = true;
+
   $scope.exercise = 'Exercise 3 Vocabulary';
   $scope.instruction = 'What school activities do you see on the picture?';
+
   $scope.obj = {
     progres : "-244px;",
     control_next : "blocked",
     control_prev : ""
     };
+
   $scope.task1 = [ 
     { 
       nr: 1,
@@ -59,40 +64,8 @@ app.controller('Step2Controller', ['$scope', function($scope) {
     }
   ];
 
-  $scope.validation_trigger = true;
-
   $scope.validate = function() {
-
-    if($scope.validation_trigger) {
-      for (i = 0; i < $scope.task1.length; i++) {
-
-          if (typeof $scope.task1[i].answer !== 'undefined') {
-              var filtered = $scope.task1[i].answer.toLowerCase();    //ignorowanie spacji i dużych znaków
-              filtered = filtered.replace(/\s/g, '');
-              $scope.task1[i].answer = filtered;                      //sprawdzam czy wartość inputa jest równa right_answer
-              console.log(filtered)
-              if ($scope.task1[i].right_answer == filtered) {
-                  $scope.task1[i].good = 'display' 
-              }
-              else {
-                  $scope.task1[i].wrong = 'display' 
-              }
-          }
-          else {
-             $scope.task1[i].wrong = 'display' 
-          }
-        }
-
-        $scope.validation_trigger = false; 
-        $scope.check = "refresh"
-      }
-    else {
-      for (i = 0; i < $scope.task1.length; i++) {
-        $scope.task1[i].wrong = 'hidden';
-        $scope.task1[i].good = 'hidden';
-      };
-      $scope.validation_trigger = true;
-      $scope.check = "check"
-    }
+      var scope = $scope;
+      validates.validation(scope);
   }
 }]);
